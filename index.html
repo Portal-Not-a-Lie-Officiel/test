@@ -1,0 +1,218 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Strata Source - Accueil</title>
+    <style>
+        :root {
+            --bg-dark: #0b0c0e;
+            --nav-bg: #111315;
+            --accent-blue: #3a86ff; /* Remis en bleu pour coller au logo SVG */
+            --text-main: #ffffff;
+            --text-dim: #9ba1a6;
+        }
+
+        body {
+            background-color: var(--bg-dark);
+            color: var(--text-main);
+            font-family: 'Segoe UI', Roboto, sans-serif;
+            margin: 0;
+            padding: 0;
+        }
+
+        /* --- NAVIGATION --- */
+        nav {
+            background-color: var(--nav-bg);
+            min-height: 70px;
+            display: flex;
+            flex-direction: column; 
+            align-items: center;
+            padding: 15px 20px;
+            border-bottom: 1px solid #222;
+        }
+
+        /* Style pour le logo Image */
+        .logo-img {
+            height: 40px; /* Taille du logo */
+            width: auto;
+            margin-bottom: 15px;
+        }
+
+        nav ul {
+            list-style: none;
+            display: flex;
+            padding: 0;
+            margin: 0;
+            gap: 15px;
+            flex-wrap: wrap;
+            justify-content: center;
+        }
+
+        nav a {
+            text-decoration: none;
+            color: var(--text-dim);
+            font-weight: 600;
+            font-size: 0.85rem;
+            transition: 0.3s;
+        }
+
+        nav a.active {
+            color: white;
+            border-bottom: 2px solid var(--accent-blue);
+            padding-bottom: 5px;
+        }
+
+        /* --- HERO SECTION --- */
+        .hero {
+            text-align: center;
+            padding: 40px 20px;
+        }
+
+        /* Ici on utilise l'image aussi pour le titre principal */
+        .hero-logo {
+            max-width: 400px;
+            width: 80%;
+            margin: 0 auto 10px auto;
+            display: block;
+        }
+
+        .hero p {
+            font-size: clamp(1rem, 4vw, 1.5rem);
+            color: var(--text-dim);
+            margin-top: 20px;
+        }
+
+        /* --- GRILLE DE PROJETS --- */
+        .main-content-label {
+            text-align: center;
+            color: var(--text-dim);
+            font-family: monospace;
+            margin-bottom: 20px;
+        }
+
+        .project-grid {
+            display: flex;
+            flex-direction: column;
+            gap: 15px;
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+            align-items: center; /* Centre les cartes sur mobile */
+        }
+
+        .card {
+            height: 150px;
+            width: 100%;
+            max-width: 350px; /* Empêche les cartes d'être trop larges */
+            border-radius: 8px;
+            padding: 20px;
+            text-decoration: none;
+            color: white;
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+            transition: transform 0.2s, box-shadow 0.2s;
+            box-sizing: border-box;
+        }
+
+        .card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 20px rgba(0,0,0,0.4);
+        }
+
+        .p2ce { background: linear-gradient(135deg, #e67e22 0%, #d35400 100%); }
+        .strata { background: linear-gradient(135deg, #3498db 0%, #2980b9 100%); }
+        .doc { background: linear-gradient(135deg, #e74c3c 0%, #c0392b 100%); }
+
+        .card h3 { font-size: 1.2rem; margin: 0; line-height: 1.2; }
+
+        .btn-open {
+            background: rgba(255, 255, 255, 0.1);
+            border: 1px solid white;
+            padding: 6px 15px;
+            width: fit-content;
+            border-radius: 4px;
+            font-size: 0.75rem;
+        }
+
+        /* --- MEDIA QUERY PC --- */
+        @media (min-width: 768px) {
+            nav {
+                flex-direction: row;
+                justify-content: space-between;
+                padding: 0 50px;
+            }
+            
+            .logo-img { margin-bottom: 0; }
+
+            nav ul {
+                margin: 0 auto;
+                padding-right: 150px; /* Ajustement pour compenser le logo à gauche */
+                gap: 30px;
+            }
+
+            .project-grid {
+                flex-direction: row;
+                justify-content: center; /* Centre les cartes sur PC */
+            }
+
+            .card {
+                height: 200px;
+                flex: 0 1 320px; /* Taille fixe équilibrée pour les 3 cartes */
+            }
+        }
+
+        footer {
+            text-align: center;
+            margin-top: 50px;
+            color: var(--text-dim);
+            font-size: 0.8rem;
+            padding-bottom: 30px;
+        }
+    </style>
+</head>
+<body>
+
+    <nav>
+        <img src="https://stratasource.org/branding/i/strata/logo/ondark/color.svg" alt="Strata Logo" class="logo-img">
+        <ul>
+            <li><a href="index.html" class="active">Accueil</a></li>
+            <li><a href="p2ce_complet.html">Portal Not a Lie</a></li>
+            <li><a href="strata_complet.html">Strata Source</a></li>
+        </ul>
+    </nav>
+
+    <div class="hero">
+        <img src="https://stratasource.org/branding/i/strata/logo/ondark/color.svg" alt="Strata Source" class="hero-logo">
+        <p>Gestionnaire de Projets Local</p>
+    </div>
+
+    <div class="main-content-label">main-content</div>
+
+    <div class="project-grid">
+        <a href="p2ce_complet.html" class="card p2ce">
+            <h3>Portal Not a Lie page project</h3>
+            <div class="btn-open">Ouvrir</div>
+        </a>
+
+        <a href="strata_complet.html" class="card strata">
+            <h3>Projet Strata</h3>
+            <div class="btn-open">Ouvrir</div>
+        </a>
+
+        <a href="readme.html" class="card doc">
+            <h3>Readme</h3>
+            <div class="btn-open">Lire</div>
+        </a>
+    </div>
+
+    <footer>
+        © 2026 Portal Not a Lie Team.
+        
+        Project fais avec amour par la communauté
+    </footer>
+    
+
+</body>
+</html>
