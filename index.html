@@ -4,11 +4,14 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Strata Source - Accueil</title>
+    
+    <link id="favicon" rel="icon" type="image/svg+xml" href="https://stratasource.org/branding/i/strata/icon/ondark/color.svg">
+    
     <style>
         :root {
             --bg-dark: #0b0c0e;
             --nav-bg: #111315;
-            --accent-blue: #3a86ff; /* Remis en bleu pour coller au logo SVG */
+            --accent-blue: #3a86ff;
             --text-main: #ffffff;
             --text-dim: #9ba1a6;
         }
@@ -32,9 +35,8 @@
             border-bottom: 1px solid #222;
         }
 
-        /* Style pour le logo Image */
         .logo-img {
-            height: 40px; /* Taille du logo */
+            height: 40px;
             width: auto;
             margin-bottom: 15px;
         }
@@ -69,7 +71,6 @@
             padding: 40px 20px;
         }
 
-        /* Ici on utilise l'image aussi pour le titre principal */
         .hero-logo {
             max-width: 400px;
             width: 80%;
@@ -98,13 +99,13 @@
             max-width: 1200px;
             margin: 0 auto;
             padding: 0 20px;
-            align-items: center; /* Centre les cartes sur mobile */
+            align-items: center;
         }
 
         .card {
             height: 150px;
             width: 100%;
-            max-width: 350px; /* Empêche les cartes d'être trop larges */
+            max-width: 350px;
             border-radius: 8px;
             padding: 20px;
             text-decoration: none;
@@ -143,32 +144,19 @@
                 justify-content: space-between;
                 padding: 0 50px;
             }
-            
             .logo-img { margin-bottom: 0; }
-
-            nav ul {
-                margin: 0 auto;
-                padding-right: 150px; /* Ajustement pour compenser le logo à gauche */
-                gap: 30px;
-            }
-
-            .project-grid {
-                flex-direction: row;
-                justify-content: center; /* Centre les cartes sur PC */
-            }
-
-            .card {
-                height: 200px;
-                flex: 0 1 320px; /* Taille fixe équilibrée pour les 3 cartes */
-            }
+            nav ul { margin: 0 auto; padding-right: 150px; gap: 30px; }
+            .project-grid { flex-direction: row; justify-content: center; }
+            .card { height: 200px; flex: 0 1 320px; }
         }
 
         footer {
             text-align: center;
             margin-top: 50px;
             color: var(--text-dim);
-            font-size: 0.8rem;
-            padding-bottom: 30px;
+            font-size: 0.85rem;
+            padding: 20px 20px 40px 20px;
+            line-height: 1.6;
         }
     </style>
 </head>
@@ -195,12 +183,10 @@
             <h3>Portal Not a Lie page project</h3>
             <div class="btn-open">Ouvrir</div>
         </a>
-
         <a href="strata_complet.html" class="card strata">
             <h3>Projet Strata</h3>
             <div class="btn-open">Ouvrir</div>
         </a>
-
         <a href="readme.html" class="card doc">
             <h3>Readme</h3>
             <div class="btn-open">Lire</div>
@@ -208,11 +194,25 @@
     </div>
 
     <footer>
-        © 2026 Portal Not a Lie Team.
-        
-        Project fais avec amour par la communauté
+        © 2026 Portal Not a Lie Team.<br>
+        Projet fait avec amour par la communauté.
     </footer>
-    
+
+    <script>
+        // Ce script change UNIQUEMENT l'icône de l'onglet selon le thème du navigateur
+        function updateFavicon() {
+            const isDark = window.matchMedia('(prefers-color-scheme: dark)').matches;
+            const favicon = document.getElementById('favicon');
+            
+            const lightIcon = "https://stratasource.org/branding/i/strata/icon/onlight/color.svg";
+            const darkIcon = "https://stratasource.org/branding/i/strata/icon/ondark/color.svg";
+            
+            favicon.href = isDark ? darkIcon : lightIcon;
+        }
+
+        updateFavicon();
+        window.matchMedia('(prefers-color-scheme: dark)').addEventListener('change', updateFavicon);
+    </script>
 
 </body>
 </html>
