@@ -12,8 +12,20 @@
             --bg-dark: #0b0c0e;
             --nav-bg: #111315;
             --accent-blue: #3a86ff;
+            --accent-red: #ff0000;
             --text-main: #ffffff;
             --text-dim: #9ba1a6;
+            --footer-bg: #090a0c;
+        }
+
+        /* --- SÉLECTION ROUGE --- */
+        ::selection {
+            background-color: var(--accent-red);
+            color: #ffffff;
+        }
+        ::-moz-selection {
+            background-color: var(--accent-red);
+            color: #ffffff;
         }
 
         body {
@@ -21,7 +33,9 @@
             color: var(--text-main);
             font-family: 'Segoe UI', Roboto, sans-serif;
             margin: 0;
-            padding: 0;
+            display: flex;
+            flex-direction: column;
+            min-height: 100vh;
         }
 
         /* --- NAVIGATION --- */
@@ -35,184 +49,159 @@
             border-bottom: 1px solid #222;
         }
 
-        .logo-img {
-            height: 40px;
-            width: auto;
-            margin-bottom: 15px;
-        }
+        .logo-img { height: 40px; width: auto; margin-bottom: 15px; }
 
         nav ul {
-            list-style: none;
-            display: flex;
-            padding: 0;
-            margin: 0;
-            gap: 15px;
-            flex-wrap: wrap;
-            justify-content: center;
+            list-style: none; display: flex; padding: 0; margin: 0; gap: 15px;
+            flex-wrap: wrap; justify-content: center;
         }
 
         nav a {
-            text-decoration: none;
-            color: var(--text-dim);
-            font-weight: 600;
-            font-size: 0.85rem;
-            transition: 0.3s;
+            text-decoration: none; color: var(--text-dim);
+            font-weight: 600; font-size: 0.85rem; transition: 0.3s;
         }
 
-        nav a.active {
-            color: white;
-            border-bottom: 2px solid var(--accent-blue);
-            padding-bottom: 5px;
-        }
+        nav a.active { color: white; border-bottom: 2px solid var(--accent-blue); padding-bottom: 5px; }
 
-        /* --- HERO SECTION --- */
-        .hero {
-            text-align: center;
-            padding: 40px 20px;
-        }
+        /* --- CONTENU --- */
+        .content-wrap { flex: 1; }
 
-        .hero-logo {
-            max-width: 400px;
-            width: 80%;
-            margin: 0 auto 10px auto;
-            display: block;
-        }
+        .hero { text-align: center; padding: 40px 20px; }
+        .hero-logo { max-width: 400px; width: 80%; margin: 0 auto 10px auto; display: block; }
+        .hero p { font-size: clamp(1rem, 4vw, 1.5rem); color: var(--text-dim); margin-top: 20px; }
 
-        .hero p {
-            font-size: clamp(1rem, 4vw, 1.5rem);
-            color: var(--text-dim);
-            margin-top: 20px;
-        }
-
-        /* --- GRILLE DE PROJETS --- */
-        .main-content-label {
-            text-align: center;
-            color: var(--text-dim);
-            font-family: monospace;
-            margin-bottom: 20px;
-        }
-
+        /* --- GRILLE --- */
         .project-grid {
-            display: flex;
-            flex-direction: column;
-            gap: 15px;
-            max-width: 1200px;
-            margin: 0 auto;
-            padding: 0 20px;
-            align-items: center;
+            display: flex; flex-direction: column; gap: 15px;
+            max-width: 1200px; margin: 0 auto; padding: 0 20px; align-items: center;
         }
 
         .card {
-            height: 150px;
-            width: 100%;
-            max-width: 350px;
-            border-radius: 8px;
-            padding: 20px;
-            text-decoration: none;
-            color: white;
-            display: flex;
-            flex-direction: column;
-            justify-content: space-between;
-            transition: transform 0.2s, box-shadow 0.2s;
-            box-sizing: border-box;
+            height: 150px; width: 100%; max-width: 350px; border-radius: 8px;
+            padding: 20px; text-decoration: none; color: white;
+            display: flex; flex-direction: column; justify-content: space-between;
+            transition: transform 0.2s; box-sizing: border-box;
         }
 
-        .card:hover {
-            transform: translateY(-5px);
-            box-shadow: 0 10px 20px rgba(0,0,0,0.4);
-        }
-
+        .card:hover { transform: translateY(-5px); }
         .p2ce { background: linear-gradient(135deg, #e67e22 0%, #d35400 100%); }
         .strata { background: linear-gradient(135deg, #3498db 0%, #2980b9 100%); }
         .doc { background: linear-gradient(135deg, #e74c3c 0%, #c0392b 100%); }
-
-        .card h3 { font-size: 1.2rem; margin: 0; line-height: 1.2; }
+        .notalie { background: linear-gradient(135deg, #0099ff 0%, #0099ff 100%); }
 
         .btn-open {
-            background: rgba(255, 255, 255, 0.1);
-            border: 1px solid white;
-            padding: 6px 15px;
-            width: fit-content;
-            border-radius: 4px;
-            font-size: 0.75rem;
+            background: rgba(255, 255, 255, 0.1); border: 1px solid white;
+            padding: 6px 15px; border-radius: 4px; font-size: 0.75rem;
         }
 
-        /* --- MEDIA QUERY PC --- */
         @media (min-width: 768px) {
-            nav {
-                flex-direction: row;
-                justify-content: space-between;
-                padding: 0 50px;
-            }
+            nav { flex-direction: row; justify-content: space-between; padding: 0 50px; }
             .logo-img { margin-bottom: 0; }
             nav ul { margin: 0 auto; padding-right: 150px; gap: 30px; }
             .project-grid { flex-direction: row; justify-content: center; }
             .card { height: 200px; flex: 0 1 320px; }
         }
 
+        /* --- FOOTER TYPE STRATA --- */
         footer {
-            text-align: center;
-            margin-top: 50px;
-            color: var(--text-dim);
-            font-size: 0.85rem;
-            padding: 20px 20px 40px 20px;
-            line-height: 1.6;
+            background-color: var(--footer-bg);
+            border-top: 1px solid #1a1c1e;
+            padding: 40px 50px;
+            margin-top: 100px;
+        }
+
+        .footer-container {
+            max-width: 1200px;
+            margin: 0 auto;
+            display: flex;
+            justify-content: space-between;
+            align-items: flex-start;
+            flex-wrap: wrap;
+            gap: 30px;
+        }
+
+        .footer-left { display: flex; flex-direction: column; gap: 15px; }
+        .footer-mono-logo { height: 45px; width: auto; filter: brightness(0.9); }
+        .copyright { color: var(--text-dim); font-size: 0.85rem; font-weight: 500; }
+
+        .footer-right { display: flex; flex-direction: column; align-items: flex-end; gap: 20px; }
+        .footer-links { display: flex; gap: 20px; }
+        .footer-links a { color: white; text-decoration: none; font-weight: 500; font-size: 0.9rem; }
+        .footer-socials { display: flex; gap: 15px; }
+        .footer-socials img { height: 24px; width: 24px; filter: invert(0.7); transition: 0.3s; }
+        .footer-socials img:hover { filter: invert(1); }
+
+        @media (max-width: 600px) {
+            .footer-container { flex-direction: column; align-items: center; text-align: center; }
+            .footer-right { align-items: center; }
         }
     </style>
 </head>
 <body>
 
-    <nav>
-        <img src="https://stratasource.org/branding/i/strata/logo/ondark/color.svg" alt="Strata Logo" class="logo-img">
-        <ul>
-            <li><a href="index.html" class="active">Accueil</a></li>
-            <li><a href="p2ce_complet.html">Portal Not a Lie</a></li>
-            <li><a href="strata_complet.html">Strata Source</a></li>
-        </ul>
-    </nav>
+    <div class="content-wrap">
+        <nav>
+            <img src="https://stratasource.org/branding/i/strata/logo/ondark/color.svg" alt="Strata Logo" class="logo-img">
+            <ul>
+                <li><a href="index.html" class="active">Accueil</a></li>
+                <li><a href="p2ce_complet.html">Portal Not a Lie</a></li>
+                <li><a href="strata_complet.html">Strata Source</a></li>
+            </ul>
+        </nav>
 
-    <div class="hero">
-        <img src="https://stratasource.org/branding/i/strata/logo/ondark/color.svg" alt="Strata Source" class="hero-logo">
-        <p>Gestionnaire de Projets Local</p>
-    </div>
+        <div class="hero">
+            <img src="https://stratasource.org/branding/i/strata/logo/ondark/color.svg" alt="Strata Source" class="hero-logo">
+            <p>Gestionnaire de Projets Strata</p>
+        </div>
 
-    <div class="main-content-label">main-content</div>
-
-    <div class="project-grid">
-        <a href="p2ce_complet.html" class="card p2ce">
-            <h3>Portal Not a Lie page project</h3>
-            <div class="btn-open">Ouvrir</div>
-        </a>
-        <a href="strata_complet.html" class="card strata">
-            <h3>Projet Strata</h3>
-            <div class="btn-open">Ouvrir</div>
-        </a>
-        <a href="readme.html" class="card doc">
-            <h3>Readme</h3>
-            <div class="btn-open">Lire</div>
-        </a>
+        <div class="project-grid">
+            <a href="p2ce_complet.html" class="card p2ce">
+                <h3>P2:CE project</h3>
+                <div class="btn-open">Ouvrir</div>
+            </a>
+            <a href="strata_complet.html" class="card strata">
+                <h3>Projet Strata</h3>
+                <div class="btn-open">Ouvrir</div>
+            </a>
+            <a href="readme.html" class="card doc">
+                <h3>Readme</h3>
+                <div class="btn-open">Lire</div>
+            </a>
+            <a href="notalie.html" class="card notalie">
+                <h3>Portal: Not a Lie</h3>
+                <div class="btn-open">Ouvrir</div>
+            </a>
+        </div>
     </div>
 
     <footer>
-        © 2026 Portal Not a Lie Team.<br>
-        Projet fait avec amour par la communauté.
+        <div class="footer-container">
+            <div class="footer-left">
+                <img src="https://stratasource.org/branding/i/strata-source/logo/ondark/mono.svg" alt="Strata Mono" class="footer-mono-logo">
+                <div class="copyright">©2026 Portal: Not a Lie</div>
+            </div>
+            
+            <div class="footer-right">
+                <div class="footer-links">
+                    <a href="#">Qt Source Code</a>
+                    <a href="#">Contact</a>
+                </div>
+                <div class="footer-socials">
+                    <a href="https://github.com/Strata-Source" target="_blank"><img src="https://cdn-icons-png.flaticon.com/512/25/25231.png" alt="GitHub"></a>
+                    <a href="https://twitter.com/StrataSource" target="_blank"><img src="https://cdn-icons-png.flaticon.com/512/733/733579.png" alt="Twitter"></a>
+                </div>
+            </div>
+        </div>
     </footer>
 
     <script>
-        // Ce script change UNIQUEMENT l'icône de l'onglet selon le thème du navigateur
         function updateFavicon() {
             const isDark = window.matchMedia('(prefers-color-scheme: dark)').matches;
             const favicon = document.getElementById('favicon');
-            
-            const lightIcon = "https://stratasource.org/branding/i/strata/icon/onlight/color.svg";
-            const darkIcon = "https://stratasource.org/branding/i/strata/icon/ondark/color.svg";
-            
-            favicon.href = isDark ? darkIcon : lightIcon;
+            favicon.href = isDark ? "https://stratasource.org/branding/i/strata/icon/ondark/color.svg" : "https://stratasource.org/branding/i/strata/icon/onlight/color.svg";
         }
-
         updateFavicon();
         window.matchMedia('(prefers-color-scheme: dark)').addEventListener('change', updateFavicon);
     </script>
-
 </body>
 </html>
