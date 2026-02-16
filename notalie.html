@@ -1,0 +1,352 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>PORTAL: NOT A LIE</title>
+    
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+
+    <style>
+        :root {
+            --color-dark: #121212;
+            --color-card-bg: #1e1e1e;
+            --color-accent: #3e93d3;
+            --color-text-light: #ffffff;
+            --color-text-muted: #aaaaaa;
+            --color-error: #a30000;
+            --footer-bg: #090a0c;
+        }
+
+        /* --- PERSONNALISATION DE LA SÉLECTION (ROUGE) --- */
+        ::selection {
+            background-color: #ff0000;
+            color: #ffffff;
+        }
+        ::-moz-selection {
+            background-color: #ff0000;
+            color: #ffffff;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            scroll-behavior: smooth;
+        }
+
+        body {
+            font-family: "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+            background-color: var(--color-dark);
+            color: var(--color-text-light);
+            line-height: 1.6;
+            display: flex;
+            flex-direction: column;
+            min-height: 100vh;
+        }
+
+        .content-wrap { flex: 1; }
+
+        a { text-decoration: none; color: white; transition: 0.3s; }
+        ul { list-style: none; }
+
+        /* --- NAVIGATION --- */
+        nav {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 10px 50px; /* Réduit un peu pour compenser la hauteur du logo */
+            background: #000000;
+            position: fixed;
+            width: 100%;
+            top: 0;
+            z-index: 1000;
+            border-bottom: 1px solid #333;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.5);
+        }
+
+        .nav-logo-img {
+            height: 45px; /* Taille pour la barre de navigation */
+            width: auto;
+            display: block;
+        }
+
+        .nav-links { display: flex; gap: 30px; }
+        .nav-links a { font-size: 0.9rem; opacity: 0.8; text-transform: uppercase; letter-spacing: 1px; padding: 5px 0;}
+        .nav-links a:hover { opacity: 1; color: var(--color-accent); }
+        .nav-links i { margin-right: 5px; }
+
+        .hamburger {
+            display: none;
+            flex-direction: column;
+            justify-content: space-around;
+            width: 30px;
+            height: 25px;
+            cursor: pointer;
+            padding: 5px;
+            z-index: 1001;
+        }
+
+        .bar { width: 100%; height: 3px; background-color: white; transition: all 0.3s ease-in-out; }
+
+        /* --- HEADER --- */
+        header {
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            padding-top: 60px;
+        }
+
+        .hero-background {
+            width: 100%;
+            height: 60vh;
+            display: flex;
+            flex-direction: column;
+            justify-content: flex-end;
+            align-items: center;
+            text-align: center;
+            padding: 40px 20px;
+            background: 
+                linear-gradient(to top, var(--color-dark) 0%, rgba(18, 18, 18, 0.5) 40%, rgba(18, 18, 18, 0.1) 100%), 
+                url('https://portal2communityedition.com/_app/immutable/assets/autumn1.XKmKmQ4n.webp') no-repeat center center/cover;
+            box-shadow: inset 0 -20px 20px rgba(0, 0, 0, 0.5);
+        }
+
+        /* Taille du gros logo central */
+        .hero-logo-img {
+            max-width: 600px;
+            width: 90%;
+            height: auto;
+            margin-bottom: 20px;
+            filter: drop-shadow(0 4px 10px rgba(0,0,0,0.8));
+        }
+
+        .subtitle { font-size: 1.1rem; color: #ccc; margin-bottom: 20px; max-width: 600px; }
+        
+        .powered-by-rev {
+            font-size: 0.8rem;
+            color: var(--color-accent);
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            margin-top: -15px;
+            margin-bottom: 30px;
+        }
+
+        .prerequisite-note {
+            background-color: rgba(62, 147, 211, 0.2);
+            color: var(--color-accent);
+            border: 1px solid var(--color-accent);
+            padding: 10px 20px;
+            border-radius: 4px;
+            margin-top: 15px;
+            font-size: 0.9rem;
+            max-width: 90%;
+            font-weight: bold;
+        }
+
+        .btn-group { display: flex; justify-content: center; gap: 15px; padding: 0 20px; flex-wrap: wrap; }
+
+        .btn {
+            padding: 12px 30px;
+            color: white;
+            font-weight: bold;
+            border-radius: 4px;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            border: 2px solid;
+            transition: all 0.3s ease;
+        }
+        
+        .btn-primary { 
+            background-color: var(--color-accent);
+            border-color: var(--color-accent);
+            box-shadow: 0 0 15px rgba(62, 147, 211, 0.4);
+            min-width: 280px;
+        }
+        
+        .btn-github { background-color: #24292e; border-color: #24292e; }
+
+        .container { max-width: 1100px; margin: 0 auto; padding: 50px 20px; }
+
+        .section-title {
+            font-size: 1.5rem;
+            margin-bottom: 30px;
+            border-left: 5px solid var(--color-accent);
+            padding-left: 15px;
+            text-transform: uppercase;
+            font-weight: bold;
+        }
+
+        .grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 20px; }
+
+        .card {
+            background: var(--color-card-bg);
+            border-radius: 8px;
+            border: 1px solid #333;
+            transition: 0.3s;
+            overflow: hidden;
+        }
+
+        .card:hover { transform: translateY(-5px); border-color: var(--color-accent); }
+        
+        .card-image { width: 100%; height: 150px; background-size: cover; background-position: center; }
+        .card-image-1 { background-image: url('https://portal2communityedition.com/_app/immutable/assets/schrodingers-lasers.Bq5st9Uv.webp'); }
+        .card-image-2 { background-image: url('https://i.ibb.co/tTG23b0J/IMG-20251219-195031.jpg'); }
+        .card-image-3 { background-image: url('https://portal2communityedition.com/_app/immutable/assets/clustered.DT5AkiSX.png'); }
+
+        .card-content { padding: 15px; }
+
+        /* --- FOOTER --- */
+        footer {
+            background-color: var(--footer-bg);
+            border-top: 1px solid #1a1c1e;
+            padding: 40px 50px;
+            margin-top: 50px;
+        }
+
+        .footer-container {
+            max-width: 1200px;
+            margin: 0 auto;
+            display: flex;
+            justify-content: space-between;
+            align-items: flex-start;
+            flex-wrap: wrap;
+            gap: 30px;
+        }
+
+        .footer-left { display: flex; flex-direction: column; gap: 15px; }
+        .footer-mono-logo { height: 45px; width: auto; filter: brightness(0.9); }
+        .copyright { color: var(--color-text-muted); font-size: 0.85rem; font-weight: 500; }
+
+        .footer-right { display: flex; flex-direction: column; align-items: flex-end; gap: 20px; }
+        .footer-links { display: flex; gap: 20px; }
+        .footer-links a { color: white; text-decoration: none; font-weight: 500; font-size: 0.9rem; }
+        .footer-socials { display: flex; gap: 15px; }
+        .footer-socials img { height: 24px; width: 24px; filter: invert(0.7); transition: 0.3s; }
+        .footer-socials img:hover { filter: invert(1); }
+
+        @media (max-width: 768px) {
+            nav { padding: 12px 20px; }
+            .hamburger { display: flex; }
+            .nav-links {
+                width: 100%; flex-direction: column; position: absolute; top: 67px; left: 0;
+                background: #000; border-top: 1px solid #333; max-height: 0; overflow: hidden; transition: 0.5s;
+            }
+            .nav-links.active { max-height: 400px; padding-bottom: 10px; opacity: 1; }
+            .footer-container { flex-direction: column; align-items: center; text-align: center; }
+            .footer-right { align-items: center; }
+        }
+    </style>
+</head>
+<body>
+
+    <div class="content-wrap">
+        <nav>
+            <a href="index.html">
+                <img src="https://i.postimg.cc/X73vBcjp/portal2logo-(1).png" alt="Portal: Not A Lie Logo" class="nav-logo-img">
+            </a>
+            <div class="hamburger" id="hamburger-icon">
+                <span class="bar"></span>
+                <span class="bar"></span>
+                <span class="bar"></span>
+            </div>
+            
+            <div class="nav-links" id="nav-links">
+                <a href="#"><i class="fas fa-home"></i> Accueil</a>
+                <a href="#features"><i class="fas fa-info-circle"></i> Fonctionnalités</a>
+                <a href="#about"><i class="fas fa-tools"></i> Installation</a>
+                <a href="https://github.com/Portal-Not-a-Lie-Officiel" target="_blank"><i class="fab fa-github"></i> GitHub</a>
+            </div>
+        </nav>
+
+        <header>
+            <div class="hero-background">
+                <img src="https://i.postimg.cc/X73vBcjp/portal2logo-(1).png" alt="Portal: Not A Lie" class="hero-logo-img">
+                
+                <p class="subtitle">Un mod narratif unique propulsé par Strata Source & p2ce.</p>
+                <div class="powered-by-rev">Compatible avec le moteur de p2ce.</div>
+                <p class="prerequisite-note">
+                    <i class="fas fa-exclamation-triangle"></i> **Jeu Requis :** Vous devez posséder Portal 2 et Portal 2 : Community Edition sur Steam pour jouer.
+                </p>
+            </div>
+            
+            <div class="btn-group" style="margin-top: -30px; z-index: 10;">
+                <a href="https://store.steampowered.com/app/620/Portal_2/" class="btn btn-primary" target="_blank">
+                    <i class="fas fa-download"></i> Télécharger le Mod
+                </a>
+                <a href="https://github.com/Portal-Not-a-Lie-Officiel" class="btn btn-github" target="_blank">
+                    <i class="fab fa-github"></i> Accéder au Dépôt GitHub
+                </a>
+            </div>
+        </header>
+
+        <div class="container" id="features">
+            <h2 class="section-title">Pourquoi jouer à ce mod ?</h2>
+            <div class="grid">
+                <div class="card">
+                    <div class="card-image card-image-1"></div>
+                    <div class="card-content">
+                        <h3>Gameplay Innovant</h3>
+                        <p>Utilisant les dernières fonctionnalités de Strata Source et du moteur de p2ce pour offrir des mécaniques de puzzle inédites.</p>
+                    </div>
+                </div>
+                <div class="card">
+                    <div class="card-image card-image-2"></div>
+                    <div class="card-content">
+                        <h3>Nouvelle Histoire</h3>
+                        <p>Plongez dans une narration captivante.</p>
+                    </div>
+                </div>
+                <div class="card">
+                    <div class="card-image card-image-3"></div>
+                    <div class="card-content">
+                        <h3>Visuels Améliorés</h3>
+                        <p>Des environnements retravaillés profitant des améliorations graphiques fournies par Portal 2 Community Edition.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="container" id="about" style="background-color: var(--color-card-bg); border-radius: 8px;">
+            <h2 class="section-title">Installation</h2>
+            <ol style="color: var(--color-text-muted); padding-left: 20px;">
+                <li style="margin-bottom: 10px;">Téléchargez et installez p2ce sur Steam.</li>
+                <li style="margin-bottom: 10px;">Téléchargez la dernière version de Not a Lie depuis GitHub.</li>
+                <li style="margin-bottom: 10px;">Extrayez le dossier dans votre répertoire <code>steamapps/sourcemod</code>.</li>
+                <li>Redémarrez Steam puis Portal Not a Lie va apparaître.</li>
+            </ol>
+        </div>
+    </div>
+
+    <footer>
+        <div class="footer-container">
+            <div class="footer-left">
+                <img src="https://stratasource.org/branding/i/strata-source/logo/ondark/mono.svg" alt="Strata Mono" class="footer-mono-logo">
+                <div class="copyright">© 2025 - 2026 Portal: Not a Lie Team.</div>
+            </div>
+            
+            <div class="footer-right">
+                <div class="footer-links">
+                    <a href="#">Qt Source Code</a>
+                    <a href="#">Contact</a>
+                </div>
+                <div class="footer-socials">
+                    <a href="https://github.com/Strata-Source" target="_blank"><img src="https://cdn-icons-png.flaticon.com/512/25/25231.png" alt="GitHub"></a>
+                    <a href="https://twitter.com/StrataSource" target="_blank"><img src="https://cdn-icons-png.flaticon.com/512/733/733579.png" alt="Twitter"></a>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        const hamburger = document.getElementById('hamburger-icon');
+        const navLinks = document.getElementById('nav-links');
+
+        hamburger.addEventListener('click', () => {
+            hamburger.classList.toggle('active');
+            navLinks.classList.toggle('active');
+        });
+    </script>
+</body>
+</html>
