@@ -1,9 +1,9 @@
 **README : Clarification du Projet**
 
-Note importante : Ce projet est un hommage et une documentation.
+**Note importante** : Ce projet est un hommage et une documentation.
 Le projet P2:CE ainsi que le Projet Strata sur ce site, ont été créés dans un but précis : servir de "remake" ou de miroir informatif.
 
-Origines et Références
+**Origines et Références**
 Il est important de noter que ces pages sont basées sur les structures et les concepts de :
 
 portal2communityedition.com
